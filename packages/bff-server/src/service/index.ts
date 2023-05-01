@@ -1,0 +1,1 @@
+export { fooService } from './FooService';

@@ -1,0 +1,22 @@
+{
+  "name": "personal-blog",
+  "version": "0.1.0",
+  "packageManager": "yarn@3.5.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "start": "lerna run --parallel start",
+    "test": "lerna run --parallel test",
+    "lint": "lerna run --parallel lint",
+    "lint:fix": "lerna run --parallel lint:fix",
+    "preCommit": "lerna run --parallel lint && lerna run --parallel test ",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "husky": "^8.0.3",
+    "lerna": "^6.6.1",
+    "typescript": "^5.0.4"
+  }
+}
