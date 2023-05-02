@@ -1,1 +1,1 @@
-export { fooService } from './FooService';
+export { ArticleService } from './ArticleService';

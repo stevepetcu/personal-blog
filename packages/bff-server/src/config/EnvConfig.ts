@@ -2,6 +2,6 @@ interface EnvVariables {
   port: string;
 }
 
-export const envConfig: EnvVariables = {
+export const EnvConfig: EnvVariables = {
   port: process.env.PORT ?? '',
 };

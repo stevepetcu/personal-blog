@@ -1,1 +1,1 @@
-export { router, ENDPOINTS } from './Router';
+export { Router, Endpoints } from './Router';

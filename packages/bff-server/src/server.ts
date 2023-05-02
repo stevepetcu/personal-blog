@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv';
 import express from 'express';
-import { ENDPOINTS, router } from './api';
-import { envConfig } from './config';
+import { Endpoints, Router } from './api';
+import { EnvConfig } from './config';
 import cors from 'cors';
 
 // TODO: Implement routes, controllers and models: https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/routes
@@ -11,10 +11,10 @@ dotenv.config();
 
 const app = express();
 app.use(cors());
-app.use(router);
+app.use(Router);
 
-app.listen(envConfig.port, () => {
-  console.info(`Server at http://localhost:${envConfig.port}`);
+app.listen(EnvConfig.port, () => {
+  console.info(`Server at http://localhost:${EnvConfig.port}`);
   console.info('Available endpoints:');
-  console.info(ENDPOINTS);
+  console.info(Endpoints);
 });

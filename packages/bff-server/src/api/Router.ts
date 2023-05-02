@@ -1,14 +1,16 @@
 import express from 'express';
-import { fooService } from '../service';
+import { ArticleService } from '../service';
 
-const ENDPOINTS: Record<string, string> = {
-  testEndpoint: '/data',
-};
+enum Endpoints {
+  ARTICLES = '/articles',
+}
 
-const router = express.Router();
+const Router = express.Router();
+// TODO: extract service building somewhere else.
+const { listArticles } = ArticleService('articlesRepository');
 
-router.get(ENDPOINTS.testEndpoint, (req, res) => {
-  res.status(200).json(fooService.foo());
+Router.get(Endpoints.ARTICLES, (req, res) => {
+  res.status(200).json(listArticles());
 });
 
-export { router, ENDPOINTS };
+export { Router, Endpoints };

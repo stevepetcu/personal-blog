@@ -9,11 +9,11 @@ export const App = () => {
 
   const handleTestBff = async () => {
     try {
-      const response = await fetch('http://localhost:3000/data');
+      const response = await fetch('http://localhost:3000/articles');
       const jsonData = await response.json();
-      setApiTestResponse(jsonData.foo);
+      setApiTestResponse(JSON.stringify(jsonData));
     } catch (error) {
-      setApiTestResponse('An error has occurred while fetching the data.');
+      setApiTestResponse('An error has occurred while fetching the articles.');
     }
   };
 
@@ -22,8 +22,8 @@ export const App = () => {
       <header className='App-header'>
         <img src={logo} className='App-logo' alt='logo' />
         <p>Blog admin page</p>
-        <button onClick={handleTestBff}>Foo</button>
-        <p>{apiTestResponse || 'Press the Foo button!'}</p>
+        <button onClick={handleTestBff}>All articles</button>
+        <p>{apiTestResponse || 'Get all the articles!'}</p>
       </header>
     </div>
   );
