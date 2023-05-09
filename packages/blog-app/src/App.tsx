@@ -1,19 +1,23 @@
 import React, { useState } from 'react';
 
+import ArticleSummaryListing from './components/screens/article-summary-listing/components/ArticleSummaryListing';
 import logo from './logo.svg';
+import { Article } from './models';
 
 import './App.css';
 
-export const App = () => {
-  const [apiTestResponse, setApiTestResponse] = useState<string>();
+const App = () => {
+  const [apiTestResponse, setApiTestResponse] = useState<Article[]>();
+  const [error, setError] = useState<unknown>();
 
   const handleTestBff = async () => {
     try {
       const response = await fetch('http://localhost:3000/articles');
       const jsonData = await response.json();
-      setApiTestResponse(JSON.stringify(jsonData));
+      setApiTestResponse(jsonData);
     } catch (error) {
-      setApiTestResponse('An error has occurred while fetching the articles.');
+      console.log(error);
+      setError(error);
     }
   };
 
@@ -23,7 +27,13 @@ export const App = () => {
         <img src={logo} className='App-logo' alt='logo' />
         <p>Blog frontend</p>
         <button onClick={handleTestBff}>All articles</button>
-        <p>{apiTestResponse || 'Get all the articles!'}</p>
+        {error ? (
+          <p>An error has occurred!</p>
+        ) : apiTestResponse ? (
+          <ArticleSummaryListing articleSummaries={apiTestResponse}></ArticleSummaryListing>
+        ) : (
+          <p>Get all the articles!</p>
+        )}
       </header>
     </div>
   );

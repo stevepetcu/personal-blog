@@ -1,8 +1,10 @@
-import { type Article } from '../models';
+import { type Article, type ArticleSummary } from '../models';
+
+import { faker } from '@faker-js/faker';
 
 interface ArticleServiceInterface {
-  listArticles: () => Article[];
-  getArticleBy: (uniquePath: string) => Article | null;
+  listArticles: () => ArticleSummary[];
+  getArticleBy: (uniqueSlug: string) => Article | null;
 }
 
 // TODO:
@@ -12,54 +14,77 @@ interface ArticleServiceInterface {
 export const ArticleService = (
   articlesRepository: string,
 ): ArticleServiceInterface => {
-  const listArticles = (): Article[] => {
-    return [
-      {
-        id: 'article-asdf1',
-        index: 0,
-        author: 'Stefan',
-        title: 'Title for SEO',
-        description: 'Short description for SEO',
-        summary: 'Summary for display in list views',
-        header: {
-          heading: 'A mock article',
-          image: {
-            url: 'https://images.pexels.com/photos/414181/pexels-photo-414181.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-            alt: 'A bird perched on a twig with pink flowers all around.',
-          },
+  const generateFakeArticle = (timestamp: number): Article => {
+    // TODO: replace with a fake database.
+    return {
+      id: faker.datatype.uuid(),
+      author: 'Stefan',
+      title: faker.lorem.words(3),
+      description: faker.lorem.sentences(2),
+      summary: faker.lorem.paragraph(2),
+      header: {
+        heading: faker.lorem.words(3),
+        image: {
+          url: faker.image.cats(320, 240, true),
+          alt: faker.lorem.sentence(5),
         },
-        sections: [
-          {
-            id: 'section-qwer1',
-            index: 0,
-            heading: 'My first section',
-            content: 'Some content…',
-            image: {
-              url: 'https://images.pexels.com/photos/268496/pexels-photo-268496.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-              alt: 'A bird perched on a twig with white flowers all around.',
-            },
-          },
-          {
-            id: 'section-qwer2',
-            index: 0,
-            heading: 'My second section',
-            content: 'Some other content…',
-          },
-        ],
-        footer: {
-          content: 'Reference 1',
-        },
-        version: 0,
-        uniquePath: 'a-mock-article',
-        published: true,
-        publishAt: new Date(1683018291445),
-        createdAt: new Date(1683018291440),
-        updatedAt: new Date(1683018291440),
       },
-    ];
+      sections: [
+        {
+          id: faker.datatype.uuid(),
+          index: faker.datatype.number({ min: 0, max: 10 }),
+          heading: faker.lorem.words(3),
+          content: faker.lorem.paragraphs(3),
+          image: {
+            url: faker.image.cats(),
+            alt: faker.lorem.sentence(5),
+          },
+        },
+        {
+          id: faker.datatype.uuid(),
+          index: faker.datatype.number({ min: 0, max: 10 }),
+          heading: faker.lorem.words(3),
+          content: faker.lorem.paragraphs(3),
+        },
+      ],
+      footer: {
+        content: faker.lorem.paragraphs(3),
+      },
+      version: faker.datatype.number({ min: 0, max: 5 }),
+      uniqueSlug: faker.lorem.slug(faker.datatype.number({ min: 2, max: 5 })),
+      published: true, // TODO: should filter based on this and other attributes
+      publishAt: timestamp,
+      createdAt: timestamp,
+      updatedAt: timestamp,
+    };
+  };
+  const generateFakeArticleSummaryList = (): ArticleSummary[] => {
+    // TODO: replace with a fake database.
+    const articleSummaries: ArticleSummary[] = [];
+
+    for (let i = 5; i > 0; i--) {
+      const timestamp = faker.date.recent(10).getTime();
+      const article = generateFakeArticle(timestamp);
+
+      articleSummaries.push({
+        id: article.id,
+        author: article.author,
+        summary: article.summary,
+        header: article.header,
+        uniqueSlug: article.uniqueSlug,
+        publishAt: article.publishAt,
+        createdAt: article.createdAt,
+        updatedAt: article.updatedAt,
+      });
+    }
+
+    return articleSummaries;
+  };
+  const listArticles = (): ArticleSummary[] => {
+    return generateFakeArticleSummaryList();
   };
 
-  const getArticleBy = (uniquePath: string): Article | null => {
+  const getArticleBy = (uniqueSlug: string): Article | null => {
     return null;
   };
 

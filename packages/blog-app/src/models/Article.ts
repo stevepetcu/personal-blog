@@ -33,6 +33,7 @@ export interface ArticleSummary {
   summary: string;
   header: Header;
   uniqueSlug: string;
+  // TODO: convert these numbers to dates in a "getArticle…" hook
   publishAt: number;
   createdAt: number;
   updatedAt: number;
