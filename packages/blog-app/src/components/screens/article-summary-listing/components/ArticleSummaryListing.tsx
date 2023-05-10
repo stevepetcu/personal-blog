@@ -9,23 +9,17 @@ interface ArticleListingProps {
 const ArticleSummaryListing: FC<ArticleListingProps> = ({ articleSummaries }) => {
   articleSummaries.sort((first, second) => second.publishAt - first.publishAt);
 
-  const renderedArticleList = articleSummaries.map((articleSummary) => (
+  const renderedArticleList = articleSummaries.map(({ header: { heading, image }, publishAt, summary, uniqueSlug }) => (
     <>
-      <dt>Heading: {articleSummary.header.heading}</dt>
+      <dt>Heading: {heading}</dt>
       <dd>
         <p>Summary:</p>
-        <p>{articleSummary.summary}</p>
-        <p>Published at: {new Date(articleSummary.publishAt).toDateString()}</p>
-        <p>Updated at: {new Date(articleSummary.publishAt).toDateString()}</p>
-        <p>Unique slug: {articleSummary.uniqueSlug}</p>
+        <p>{summary}</p>
+        <p>Published at: {new Date(publishAt).toDateString()}</p>
+        <p>Updated at: {new Date(publishAt).toDateString()}</p>
+        <p>Unique slug: {uniqueSlug}</p>
         <p>Header image:</p>
-        {articleSummary.header.image && (
-          <img
-            src={articleSummary.header.image?.url}
-            title={articleSummary.header.image?.alt}
-            alt={articleSummary.header.image?.alt}
-          />
-        )}
+        {image && <img src={image?.url} title={image?.alt} alt={image?.alt} />}
       </dd>
       <hr />
     </>

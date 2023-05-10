@@ -33,7 +33,10 @@ export const ArticleService = (
         {
           id: faker.datatype.uuid(),
           index: faker.datatype.number({ min: 0, max: 10 }),
-          heading: faker.lorem.words(3),
+          header: {
+            heading: faker.lorem.words(3),
+            anchor: `#${faker.lorem.slug(3)}`,
+          },
           content: faker.lorem.paragraphs(3),
           image: {
             url: faker.image.cats(),
@@ -43,7 +46,10 @@ export const ArticleService = (
         {
           id: faker.datatype.uuid(),
           index: faker.datatype.number({ min: 0, max: 10 }),
-          heading: faker.lorem.words(3),
+          header: {
+            heading: faker.lorem.words(3),
+            anchor: `#${faker.lorem.slug(3)}`,
+          },
           content: faker.lorem.paragraphs(3),
         },
       ],

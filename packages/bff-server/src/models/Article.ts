@@ -1,8 +1,3 @@
-enum ImagePlacement {
-  LEFT = 'left',
-  RIGHT = 'right',
-}
-
 export interface Header {
   heading: string;
   image?: {
@@ -18,12 +13,15 @@ interface Footer {
 interface Section {
   id: string;
   index: number;
-  heading: string;
+  header: {
+    heading: string;
+    anchor: string;
+  };
   content: string;
   image?: {
     url: string;
     alt: string;
-    placement?: ImagePlacement;
+    placement?: 'left' | 'right';
   };
 }
 
