@@ -3092,6 +3092,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@remix-run/router@npm:1.6.1":
+  version: 1.6.1
+  resolution: "@remix-run/router@npm:1.6.1"
+  checksum: 4ca65d9c7d6fa277227ad8fd4ef53bebab99460b714d835b609c998f9a7e7c33a964ce2b8af853b50025a60d9113968f256abc5f71f451939ff14a5187d327fe
+  languageName: node
+  linkType: hard
+
 "@rollup/plugin-babel@npm:^5.2.0":
   version: 5.3.1
   resolution: "@rollup/plugin-babel@npm:5.3.1"
@@ -4356,6 +4363,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"add-asset-html-webpack-plugin@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "add-asset-html-webpack-plugin@npm:6.0.0"
+  dependencies:
+    globby: ^11.1.0
+    micromatch: ^4.0.4
+  peerDependencies:
+    html-webpack-plugin: ^4.0.0 || ^5.0.0
+    webpack: ^5.0.0
+  checksum: 4f0b495ade8c322cc4efb6e258d1cccde37a8eadc029b858f7df68d32653551b286d73c788a010611ce2347b68269444f85423ae5d7f52d6d01d33f8c46d7d08
+  languageName: node
+  linkType: hard
+
 "add-stream@npm:^1.0.0":
   version: 1.0.0
   resolution: "add-stream@npm:1.0.0"
@@ -5195,6 +5215,7 @@ __metadata:
     "@types/testing-library__jest-dom": ^5.14.5
     "@typescript-eslint/eslint-plugin": ^5.59.1
     "@typescript-eslint/parser": ^5.59.1
+    add-asset-html-webpack-plugin: ^6.0.0
     eslint: ^8.39.0
     eslint-config-prettier: ^8.8.0
     eslint-import-resolver-typescript: ^3.5.5
@@ -5204,9 +5225,11 @@ __metadata:
     eslint-plugin-react: ^7.32.2
     eslint-plugin-react-hooks: ^4.6.0
     eslint-plugin-simple-import-sort: ^10.0.0
+    html-webpack-plugin: ^5.5.1
     prettier: ^2.8.8
     react: ^18.2.0
     react-dom: ^18.2.0
+    react-router-dom: ^6.11.1
     react-scripts: 5.0.1
     typescript: ^5.0.4
     web-vitals: ^2.1.0
@@ -9078,7 +9101,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"html-webpack-plugin@npm:^5.5.0":
+"html-webpack-plugin@npm:^5.5.0, html-webpack-plugin@npm:^5.5.1":
   version: 5.5.1
   resolution: "html-webpack-plugin@npm:5.5.1"
   dependencies:
@@ -14774,6 +14797,30 @@ __metadata:
   version: 0.11.0
   resolution: "react-refresh@npm:0.11.0"
   checksum: 112178a05b1e0ffeaf5d9fb4e56b4410a34a73adeb04dbf13abdc50d9ac9df2ada83e81485156cca0b3fa296aa3612751b3d6cd13be4464642a43679b819cbc7
+  languageName: node
+  linkType: hard
+
+"react-router-dom@npm:^6.11.1":
+  version: 6.11.1
+  resolution: "react-router-dom@npm:6.11.1"
+  dependencies:
+    "@remix-run/router": 1.6.1
+    react-router: 6.11.1
+  peerDependencies:
+    react: ">=16.8"
+    react-dom: ">=16.8"
+  checksum: 44566e10cb1ff475c73be47425dba66e8e834e695e80c572c63ca82543ad03d41f4a1d8e974bf998143150f497792f74ba99714b1219df1c923c62a3b67f187b
+  languageName: node
+  linkType: hard
+
+"react-router@npm:6.11.1":
+  version: 6.11.1
+  resolution: "react-router@npm:6.11.1"
+  dependencies:
+    "@remix-run/router": 1.6.1
+  peerDependencies:
+    react: ">=16.8"
+  checksum: c5cafbaac13564d0e325f84ce6e4cbc42de5c381b0f619209f3b101d2b6eae4a8f9ee87b492875e869909dd9bb549d05d2f677085708f79622b872bd45d14bbb
   languageName: node
   linkType: hard
 

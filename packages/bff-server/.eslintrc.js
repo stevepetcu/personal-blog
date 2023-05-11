@@ -33,5 +33,7 @@ module.exports = {
     '@typescript-eslint/prefer-optional-chain': 'off',
     '@typescript-eslint/space-before-function-paren': 'off',
     'jest/prefer-expect-assertions': 'error',
+    '@typescript-eslint/strict-boolean-expressions': 'off',
+    '@typescript-eslint/prefer-nullish-coalescing': 'off',
   },
 };

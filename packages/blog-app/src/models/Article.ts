@@ -2,6 +2,7 @@ export interface Header {
   heading: string;
   image?: {
     url: string;
+    thumbnailUrl: string;
     alt: string;
   };
 }
@@ -31,13 +32,40 @@ export interface ArticleSummary {
   summary: string;
   header: Header;
   uniqueSlug: string;
-  // TODO: convert these numbers to Date in a "getArticle…" hook
+  publishAt: Date;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface ArticleSummaryResponse {
+  id: string;
+  author: string;
+  summary: string;
+  header: Header;
+  uniqueSlug: string;
   publishAt: number;
   createdAt: number;
   updatedAt: number;
 }
 
 export interface Article {
+  id: string;
+  author: string;
+  title: string;
+  description: string;
+  summary: string;
+  header: Header;
+  sections: Section[];
+  footer?: Footer;
+  version: number;
+  uniqueSlug: string;
+  published: boolean;
+  publishAt: Date;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface ArticleResponse {
   id: string;
   author: string;
   title: string;

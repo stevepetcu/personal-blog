@@ -1,1 +1,1 @@
-export type { Article, ArticleSummary } from './Article';
+export type { Article, ArticleResponse, ArticleSummary, ArticleSummaryResponse } from './Article';

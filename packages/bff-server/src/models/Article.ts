@@ -2,6 +2,7 @@ export interface Header {
   heading: string;
   image?: {
     url: string;
+    thumbnailUrl: string;
     alt: string;
   };
 }

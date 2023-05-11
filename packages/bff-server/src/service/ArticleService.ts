@@ -14,8 +14,12 @@ interface ArticleServiceInterface {
 export const ArticleService = (
   articlesRepository: string,
 ): ArticleServiceInterface => {
-  const generateFakeArticle = (timestamp: number): Article => {
+  const generateFakeArticle = (
+    timestamp: number,
+    uniqueSlug?: string,
+  ): Article => {
     // TODO: replace with a fake database.
+
     return {
       id: faker.datatype.uuid(),
       author: 'Stefan',
@@ -25,7 +29,8 @@ export const ArticleService = (
       header: {
         heading: faker.lorem.words(3),
         image: {
-          url: faker.image.cats(320, 240, true),
+          url: faker.image.cats(1920, 640, true),
+          thumbnailUrl: faker.image.cats(480, 320, true),
           alt: faker.lorem.sentence(5),
         },
       },
@@ -35,11 +40,11 @@ export const ArticleService = (
           index: faker.datatype.number({ min: 0, max: 10 }),
           header: {
             heading: faker.lorem.words(3),
-            anchor: `#${faker.lorem.slug(3)}`,
+            anchor: `${faker.lorem.slug(3)}`,
           },
           content: faker.lorem.paragraphs(3),
           image: {
-            url: faker.image.cats(),
+            url: faker.image.cats(480, 320, true),
             alt: faker.lorem.sentence(5),
           },
         },
@@ -48,16 +53,44 @@ export const ArticleService = (
           index: faker.datatype.number({ min: 0, max: 10 }),
           header: {
             heading: faker.lorem.words(3),
-            anchor: `#${faker.lorem.slug(3)}`,
+            anchor: `${faker.lorem.slug(3)}`,
           },
           content: faker.lorem.paragraphs(3),
+          image: {
+            url: faker.image.cats(480, 320, true),
+            alt: faker.lorem.sentence(5),
+          },
+        },
+        {
+          id: faker.datatype.uuid(),
+          index: faker.datatype.number({ min: 0, max: 10 }),
+          header: {
+            heading: faker.lorem.words(3),
+            anchor: `${faker.lorem.slug(3)}`,
+          },
+          content: faker.lorem.paragraphs(3),
+        },
+        {
+          id: faker.datatype.uuid(),
+          index: faker.datatype.number({ min: 0, max: 10 }),
+          header: {
+            heading: faker.lorem.words(3),
+            anchor: `${faker.lorem.slug(3)}`,
+          },
+          content: faker.lorem.paragraphs(3),
+          image: {
+            url: faker.image.cats(480, 320, true),
+            alt: faker.lorem.sentence(5),
+          },
         },
       ],
       footer: {
         content: faker.lorem.paragraphs(3),
       },
       version: faker.datatype.number({ min: 0, max: 5 }),
-      uniqueSlug: faker.lorem.slug(faker.datatype.number({ min: 2, max: 5 })),
+      uniqueSlug:
+        uniqueSlug ||
+        faker.lorem.slug(faker.datatype.number({ min: 2, max: 5 })),
       published: true, // TODO: should filter based on this and other attributes
       publishAt: timestamp,
       createdAt: timestamp,
@@ -91,7 +124,8 @@ export const ArticleService = (
   };
 
   const getArticleBy = (uniqueSlug: string): Article | null => {
-    return null;
+    const timestamp = faker.date.recent(10).getTime();
+    return generateFakeArticle(timestamp, uniqueSlug);
   };
 
   return { listArticles, getArticleBy };
